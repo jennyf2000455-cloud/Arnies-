@@ -2,68 +2,41 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Restaurante</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arnie's Wing House</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="hero" id="top">
-    <div class="heroInner">
-      <img class="logo" src="assets/logo.png" alt="Logo del restaurante" onerror="this.style.display='none'" />
-      <h1 id="restaurantName"></h1>
-      <p id="restaurantSubtitle"></p>
-    </div>
-  </header>
 
-  <main>
-    <section class="section" aria-labelledby="historia-title">
-      <h2 id="historia-title">Nuestra Historia</h2>
-      <div id="historia" class="story"></div>
-    </section>
+<header class="hero" id="top">
+  <h1 id="restaurantName">Arnie's Wing House</h1>
+  <p id="restaurantSubtitle">Sports Bar & Grill</p>
+</header>
 
-    <section class="section" aria-labelledby="datos-title">
-      <h2 id="datos-title">Datos Generales</h2>
-      <div class="infoGrid">
-        <article class="infoCard">
-          <h3>Dirección</h3>
-          <p id="direccion"></p>
-        </article>
-        <article class="infoCard">
-          <h3>Horarios</h3>
-          <ul id="horarios" class="schedule"></ul>
-        </article>
-        <article class="infoCard">
-          <h3>Teléfono</h3>
-          <p id="telefono"></p>
-        </article>
-      </div>
-    </section>
+<section class="section">
+  <h2>Nuestra Historia</h2>
+  <p>Cargando historia…</p>
+</section>
 
-    <section class="section menuSection" aria-labelledby="menu-title">
-      <h2 id="menu-title" class="menuTitle">MENU</h2>
-      <p id="notasMenu" class="menuNotes"></p>
-      <div id="menu" class="menu"></div>
-    </section>
+<section class="section">
+  <h2>Datos Generales</h2>
+  <p>Cargando información…</p>
+</section>
 
-    <section class="section actions" aria-label="Acciones">
-      <a id="whatsappBtn" class="btn whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+<section class="section">
+  <h2 style="text-align:center">MENU</h2>
+  <p>Cargando menú…</p>
+</section>
 
-      <div class="qrBox">
-        <img src="assets/qr.png" alt="QR Asistente IA" onerror="this.style.display='none'" />
-        <p>Asistente IA</p>
-      </div>
+<section class="section">
+  <p style="text-align:center">Acciones disponibles próximamente</p>
+</section>
 
-      <a id="crmBtn" class="btn crm" target="_blank" rel="noopener">CRM</a>
+<footer>
+  <p>Precios sujetos a cambio. Imágenes solo ilustrativas.</p>
+  <a href="#top">Volver arriba</a>
+</footer>
 
-      <div class="actionsSpacer"></div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>Precios sujetos a cambio. Imágenes solo ilustrativas.</p>
-    <a href="#top">Volver arriba</a>
-  </footer>
-
-  <script src="app.js"></script>
+<script src="app.js" defer></script>
 </body>
 </html>
