@@ -1,167 +1,132 @@
 const CONFIG = {
-  nombre: "Nombre del Restaurante",
-  subtitulo: "Sabores auténticos y hospitalidad cercana",
+  nombre: "Arnie's Wing House",
+  subtitulo: "Sports Bar & Grill",
   historia: [
-    "Escribe aquí la primera parte de la historia del restaurante.",
-    "Comparte la inspiración detrás del menú y la experiencia.",
-    "Cierra con una frase sobre la comunidad o la visión a futuro."
+    "Arnie’s Wing House nació con la pasión de ofrecer las mejores alitas en un ambiente familiar y deportivo.",
+    "Con recetas originales, salsas únicas y un servicio cercano, nos hemos convertido en un punto favorito de la comunidad.",
+    "Aquí cada visita es una experiencia llena de sabor, deportes y buena compañía."
   ],
-  direccion: "Calle Principal 123",
-  ciudadEstado: "Ciudad, Estado",
-  telefono: "+52 55 1234 5678",
-  horarios: {
-    Lunes: "12:00 - 22:00",
-    Martes: "12:00 - 22:00",
-    Miércoles: "12:00 - 22:00",
-    Jueves: "12:00 - 22:00",
-    Viernes: "12:00 - 23:00",
-    Sábado: "13:00 - 23:00",
-    Domingo: "13:00 - 20:00"
-  },
-  whatsapp: "525512345678",
+  direccion: "812 South Arroyo Blvd",
+  ciudadEstado: "Los Fresnos, TX",
+  telefono: "(956) 233-9038",
+  whatsapp: "9562339038",
   crmUrl: "",
-  notasMenu: "Pregunta por nuestros especiales del día y opciones vegetarianas.",
+  horarios: {
+    Lunes: "11:00 AM – 10:00 PM",
+    Martes: "11:00 AM – 10:00 PM",
+    Miércoles: "11:00 AM – 10:00 PM",
+    Jueves: "11:00 AM – 10:00 PM",
+    Viernes: "11:00 AM – 12:00 AM",
+    Sábado: "11:00 AM – 12:00 AM",
+    Domingo: "12:00 PM – 10:00 PM"
+  },
   menu: [
-    // Reemplaza estas categorías con el menú real completo.
     {
-      categoria: "Entradas",
+      categoria: "Wings (Original or Boneless)",
       items: [
-        {
-          nombre: "Papas crujientes",
-          precio: "$85",
-          nota: "Acompañadas con salsa de la casa"
-        },
-        {
-          nombre: "Tiras de pollo",
-          precio: "$120",
-          nota: "Con aderezo ranch"
-        }
+        { nombre: "10 Wings", precio: "$12.99" },
+        { nombre: "20 Wings", precio: "$23.99" },
+        { nombre: "30 Wings", precio: "$34.99" },
+        { nombre: "50 Wings", precio: "$54.99" },
+        { nombre: "Flavors", precio: "", nota: "Buffalo, BBQ, Lemon Pepper, Mango Habanero, Garlic Parmesan" }
       ]
     },
     {
-      categoria: "Platos fuertes",
+      categoria: "Appetizers",
       items: [
-        {
-          nombre: "Hamburguesa clásica",
-          precio: "$180",
-          nota: "Carne 180 g, queso y vegetales"
-        },
-        {
-          nombre: "Ensalada mediterránea",
-          precio: "$160",
-          nota: "Lechugas frescas, aceitunas y vinagreta"
-        }
+        { nombre: "Chips & Salsa", precio: "$5.99" },
+        { nombre: "Mozzarella Sticks", precio: "$7.99" },
+        { nombre: "Fried Pickles", precio: "$6.99" },
+        { nombre: "Onion Rings", precio: "$6.99" }
+      ]
+    },
+    {
+      categoria: "Burgers",
+      items: [
+        { nombre: "Classic Burger", precio: "$9.99" },
+        { nombre: "Cheeseburger", precio: "$10.49" },
+        { nombre: "Bacon Burger", precio: "$10.99" }
+      ]
+    },
+    {
+      categoria: "Sandwiches",
+      items: [
+        { nombre: "Grilled Chicken", precio: "$9.99" },
+        { nombre: "Buffalo Chicken", precio: "$10.49" }
+      ]
+    },
+    {
+      categoria: "Kids Meals",
+      items: [
+        { nombre: "Corn Dog", precio: "$5.99" },
+        { nombre: "Grilled Cheese", precio: "$5.99" }
+      ]
+    },
+    {
+      categoria: "Desserts",
+      items: [
+        { nombre: "Cheesecake", precio: "$4.99" },
+        { nombre: "Ice Cream", precio: "$3.99" }
       ]
     }
   ]
 };
 
-const setText = (selector, value) => {
-  const el = document.querySelector(selector);
-  if (el) {
-    el.textContent = value || "";
-  }
-};
+/* ===== RENDER ===== */
 
-const renderHistoria = () => {
-  const container = document.querySelector("#historia");
-  if (!container) return;
-  container.innerHTML = "";
-  CONFIG.historia.filter(Boolean).forEach((texto) => {
-    const p = document.createElement("p");
-    p.textContent = texto;
-    container.appendChild(p);
+// HERO
+document.getElementById("restaurantName").textContent = CONFIG.nombre;
+document.getElementById("restaurantSubtitle").textContent = CONFIG.subtitulo;
+
+// HISTORIA
+const historySection = document.querySelector(".section:nth-of-type(1)");
+historySection.innerHTML = "<h2>Nuestra Historia</h2>";
+CONFIG.historia.forEach(text => {
+  const p = document.createElement("p");
+  p.textContent = text;
+  historySection.appendChild(p);
+});
+
+// DATOS GENERALES
+const infoSection = document.querySelector(".section:nth-of-type(2)");
+infoSection.innerHTML = `
+  <h2>Datos Generales</h2>
+  <p><strong>Dirección:</strong> ${CONFIG.direccion}, ${CONFIG.ciudadEstado}</p>
+  <p><strong>Teléfono:</strong> ${CONFIG.telefono}</p>
+`;
+
+for (let dia in CONFIG.horarios) {
+  const p = document.createElement("p");
+  p.textContent = `${dia}: ${CONFIG.horarios[dia]}`;
+  infoSection.appendChild(p);
+}
+
+// MENU
+const menuSection = document.querySelector(".section:nth-of-type(3)");
+menuSection.innerHTML = `<h2 style="text-align:center">MENU</h2>`;
+
+CONFIG.menu.forEach(cat => {
+  const catDiv = document.createElement("div");
+  catDiv.innerHTML = `<h3>${cat.categoria}</h3>`;
+
+  cat.items.forEach(item => {
+    const row = document.createElement("div");
+    row.style.display = "flex";
+    row.style.justifyContent = "space-between";
+    row.style.borderBottom = "1px dashed #ccc";
+    row.style.padding = "6px 0";
+
+    row.innerHTML = `
+      <div>
+        ${item.nombre}
+        ${item.nota ? `<br><small>${item.nota}</small>` : ""}
+      </div>
+      <div>${item.precio}</div>
+    `;
+    catDiv.appendChild(row);
   });
-};
 
-const renderDatos = () => {
-  setText("#direccion", `${CONFIG.direccion}, ${CONFIG.ciudadEstado}`.trim());
-  setText("#telefono", CONFIG.telefono);
+  menuSection.appendChild(catDiv);
+});
 
-  const horariosList = document.querySelector("#horarios");
-  if (horariosList) {
-    horariosList.innerHTML = "";
-    Object.entries(CONFIG.horarios).forEach(([dia, horario]) => {
-      const li = document.createElement("li");
-      li.textContent = `${dia}: ${horario}`;
-      horariosList.appendChild(li);
-    });
-  }
-};
-
-const renderMenu = () => {
-  const menuContainer = document.querySelector("#menu");
-  if (!menuContainer) return;
-  menuContainer.innerHTML = "";
-
-  CONFIG.menu.forEach((categoria) => {
-    const section = document.createElement("div");
-    section.className = "menuCategory";
-
-    const title = document.createElement("h3");
-    title.textContent = categoria.categoria;
-    section.appendChild(title);
-
-    categoria.items.forEach((item) => {
-      const itemDiv = document.createElement("div");
-      itemDiv.className = "menuItem";
-
-      const row = document.createElement("div");
-      row.className = "menuRow";
-
-      const nombre = document.createElement("span");
-      nombre.textContent = item.nombre;
-
-      const precio = document.createElement("span");
-      precio.textContent = item.precio || "";
-
-      row.appendChild(nombre);
-      row.appendChild(precio);
-
-      itemDiv.appendChild(row);
-
-      if (item.nota) {
-        const nota = document.createElement("p");
-        nota.className = "menuNote";
-        nota.textContent = item.nota;
-        itemDiv.appendChild(nota);
-      }
-
-      section.appendChild(itemDiv);
-    });
-
-    menuContainer.appendChild(section);
-  });
-};
-
-const renderAcciones = () => {
-  const whatsappBtn = document.querySelector("#whatsappBtn");
-  if (whatsappBtn) {
-    const numero = (CONFIG.whatsapp || "").replace(/\D/g, "");
-    whatsappBtn.href = `https://wa.me/${numero}`;
-  }
-
-  const crmBtn = document.querySelector("#crmBtn");
-  if (crmBtn) {
-    if (CONFIG.crmUrl) {
-      crmBtn.href = CONFIG.crmUrl;
-      crmBtn.classList.remove("placeholder");
-    } else {
-      crmBtn.href = "#";
-      crmBtn.classList.add("placeholder");
-    }
-  }
-
-  setText("#notasMenu", CONFIG.notasMenu);
-};
-
-const init = () => {
-  setText("#restaurantName", CONFIG.nombre);
-  setText("#restaurantSubtitle", CONFIG.subtitulo);
-  renderHistoria();
-  renderDatos();
-  renderMenu();
-  renderAcciones();
-};
-
-document.addEventListener("DOMContentLoaded", init);
+console.log("CONFIG cargado correctamente");
