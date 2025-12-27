@@ -4,13 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Arnie's Wing House</title>
-  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <header class="hero" id="top">
-  <h1 id="restaurantName">Cargando…</h1>
-  <p id="restaurantSubtitle"></p>
+  <div class="heroInner">
+    <img class="logo" src="assets/logo.png" alt="Logo" onerror="this.style.display='none'">
+    <h1 id="restaurantName">Cargando…</h1>
+    <p id="restaurantSubtitle"></p>
+  </div>
 </header>
 
 <section class="section" id="historiaSection">
@@ -22,14 +25,42 @@
 </section>
 
 <section class="section" id="menuSection">
-  <h2 style="text-align:center">MENU</h2>
+  <h2 class="menuTitle">MENU</h2>
 </section>
 
-<footer>
-  <p>Precios sujetos a cambio. Imágenes solo ilustrativas.</p>
-  <a href="#top">Volver arriba</a>
+<section class="section actionsSection">
+  <h2 class="actionsTitle">Acciones</h2>
+
+  <div class="actionsGrid">
+    <a id="whatsappBtn" class="btn whatsapp" target="_blank">
+      WhatsApp
+      <small>Pedidos y preguntas</small>
+    </a>
+
+    <div class="qrCard">
+      <div class="qrTop">
+        <img id="qrImg" src="assets/qr.png" alt="QR"
+          onerror="this.style.display='none';document.getElementById('qrFallback').style.display='block'">
+        <div id="qrFallback" class="qrFallback" style="display:none;">QR no disponible</div>
+      </div>
+      <div class="qrBottom">
+        <strong>Asistente IA</strong>
+        <div class="qrSub">Escanea para ayuda rápida</div>
+      </div>
+    </div>
+
+    <a id="crmBtn" class="btn crm">
+      CRM
+      <small>Administración</small>
+    </a>
+  </div>
+</section>
+
+<footer class="siteFooter">
+  <p id="footerNote">Precios sujetos a cambio. Imágenes solo ilustrativas.</p>
+  <a class="backTop" href="#top">Volver arriba</a>
 </footer>
 
-<script src="app.js?v=3" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>
