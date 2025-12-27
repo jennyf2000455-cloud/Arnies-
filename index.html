@@ -2,65 +2,93 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arnie's Wing House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arnie’s Wing House</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <a id="top"></a>
 
-<header class="hero" id="top">
-  <div class="heroInner">
-    <img class="logo" src="assets/logo.png" alt="Logo" onerror="this.style.display='none'">
-    <h1 id="restaurantName">Cargando…</h1>
-    <p id="restaurantSubtitle"></p>
-  </div>
-</header>
-
-<section class="section" id="historiaSection">
-  <h2>Nuestra Historia</h2>
-</section>
-
-<section class="section" id="infoSection">
-  <h2>Datos Generales</h2>
-</section>
-
-<section class="section" id="menuSection">
-  <h2 class="menuTitle">MENU</h2>
-</section>
-
-<section class="section actionsSection">
-  <h2 class="actionsTitle">Acciones</h2>
-
-  <div class="actionsGrid">
-    <a id="whatsappBtn" class="btn whatsapp" target="_blank">
-      WhatsApp
-      <small>Pedidos y preguntas</small>
-    </a>
-
-    <div class="qrCard">
-      <div class="qrTop">
-        <img id="qrImg" src="assets/qr.png" alt="QR"
-          onerror="this.style.display='none';document.getElementById('qrFallback').style.display='block'">
-        <div id="qrFallback" class="qrFallback" style="display:none;">QR no disponible</div>
+  <!-- 1) HERO -->
+  <header class="hero">
+    <div class="heroInner">
+      <div class="brandRow">
+        <img class="logo" src="assets/logo.png" alt="Logo" onerror="this.style.display='none'">
       </div>
-      <div class="qrBottom">
-        <strong>Asistente IA</strong>
-        <div class="qrSub">Escanea para ayuda rápida</div>
-      </div>
+      <h1 id="restaurant-name"></h1>
+      <p id="restaurant-subtitle"></p>
     </div>
+  </header>
 
-    <a id="crmBtn" class="btn crm">
-      CRM
-      <small>Administración</small>
-    </a>
-  </div>
-</section>
+  <main>
+    <!-- 2) NUESTRA HISTORIA -->
+    <section class="section">
+      <h2>Nuestra Historia</h2>
+      <div id="historia" class="prose"></div>
+    </section>
 
-<footer class="siteFooter">
-  <p id="footerNote">Precios sujetos a cambio. Imágenes solo ilustrativas.</p>
-  <a class="backTop" href="#top">Volver arriba</a>
-</footer>
+    <!-- 3) DATOS GENERALES -->
+    <section class="section">
+      <h2>Datos Generales</h2>
+      <div class="infoGrid">
+        <article class="infoCard">
+          <h3>Dirección</h3>
+          <p id="direccion" class="infoText"></p>
+          <p id="ciudadEstado" class="infoSub"></p>
+        </article>
 
-<script src="app.js" defer></script>
+        <article class="infoCard">
+          <h3>Horarios</h3>
+          <ul id="horarios" class="hoursList"></ul>
+          <p id="notasMenu" class="micro"></p>
+        </article>
+
+        <article class="infoCard">
+          <h3>Teléfono</h3>
+          <p class="infoText"><a id="telefonoLink" href="#" rel="nofollow"></a></p>
+          <p class="micro">Llámanos para pedidos, eventos o dudas del menú.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4) MENÚ -->
+    <section class="section">
+      <h2 class="center">MENU</h2>
+      <div id="menu" class="menuWrap"></div>
+    </section>
+
+    <!-- 5) ACCIONES -->
+    <section class="section actions">
+      <div class="actionsInner">
+        <a id="whatsappBtn" class="btn btnWhats" target="_blank" rel="noopener">WhatsApp</a>
+
+        <div class="qrCard">
+          <div class="qrBox">
+            <img src="assets/qr.png" alt="QR Asistente IA" onerror="this.style.display='none'">
+          </div>
+          <div class="qrText">
+            <strong>Asistente IA</strong>
+            <p class="micro">Escanea el QR para preguntas rápidas.</p>
+          </div>
+        </div>
+
+        <a id="crmBtn" class="btn btnCRM" target="_blank" rel="noopener">CRM</a>
+
+        <div class="futureSlot" aria-label="Espacio para más botones">
+          <span>+</span>
+          <p class="micro">Espacio para más botones</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="siteFooter">
+    <div class="footerInner">
+      <p class="micro">Precios sujetos a cambio. Imágenes solo ilustrativas.</p>
+      <a class="backTop" href="#top">Volver arriba</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
