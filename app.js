@@ -9,6 +9,8 @@ const CONFIG = {
   direccion: "812 South Arroyo Blvd",
   ciudadEstado: "Los Fresnos, TX",
   telefono: "(956) 233-9038",
+  whatsapp: "9562339038",
+  crmUrl: "",
   horarios: {
     Lunes: "11:00 AM – 10:00 PM",
     Martes: "11:00 AM – 10:00 PM",
@@ -20,57 +22,67 @@ const CONFIG = {
   },
   menu: [
     {
-      categoria: "Wings (Original or Boneless)",
-      items: [
-        { nombre: "10 Wings", precio: "$12.99" },
-        { nombre: "20 Wings", precio: "$23.99" },
-        { nombre: "30 Wings", precio: "$34.99" },
-        { nombre: "50 Wings", precio: "$54.99" }
+      categoria:"Wings (Original or Boneless)",
+      items:[
+        {nombre:"10 Wings",precio:"$12.99"},
+        {nombre:"20 Wings",precio:"$23.99"},
+        {nombre:"30 Wings",precio:"$34.99"},
+        {nombre:"50 Wings",precio:"$54.99"},
+        {nombre:"Flavors",precio:"",nota:"Buffalo, BBQ, Lemon Pepper, Mango Habanero, Garlic Parmesan"}
       ]
     }
   ]
 };
 
 /* HERO */
-document.getElementById("restaurantName").textContent = CONFIG.nombre;
-document.getElementById("restaurantSubtitle").textContent = CONFIG.subtitulo;
+restaurantName.textContent = CONFIG.nombre;
+restaurantSubtitle.textContent = CONFIG.subtitulo;
 
 /* HISTORIA */
-const historiaDiv = document.getElementById("historiaSection");
-CONFIG.historia.forEach(t => {
-  const p = document.createElement("p");
-  p.textContent = t;
-  historiaDiv.appendChild(p);
+const historia = document.getElementById("historiaSection");
+CONFIG.historia.forEach(t=>{
+  const p=document.createElement("p");
+  p.style.color="white";
+  p.textContent=t;
+  historia.appendChild(p);
 });
 
 /* INFO */
-const infoDiv = document.getElementById("infoSection");
-infoDiv.innerHTML += `
-  <p><strong>Dirección:</strong> ${CONFIG.direccion}, ${CONFIG.ciudadEstado}</p>
-  <p><strong>Teléfono:</strong> ${CONFIG.telefono}</p>
+const info=document.getElementById("infoSection");
+info.innerHTML+=`
+  <div class="infoGrid">
+    <div class="card">
+      <strong>Dirección</strong>
+      <p>${CONFIG.direccion}<br>${CONFIG.ciudadEstado}</p>
+    </div>
+    <div class="card">
+      <strong>Horarios</strong>
+      ${Object.entries(CONFIG.horarios).map(([d,h])=>`<p>${d}: ${h}</p>`).join("")}
+    </div>
+    <div class="card">
+      <strong>Teléfono</strong>
+      <p>${CONFIG.telefono}</p>
+    </div>
+  </div>
 `;
 
-Object.entries(CONFIG.horarios).forEach(([dia, hora]) => {
-  const p = document.createElement("p");
-  p.textContent = `${dia}: ${hora}`;
-  infoDiv.appendChild(p);
-});
-
 /* MENU */
-const menuDiv = document.getElementById("menuSection");
-CONFIG.menu.forEach(cat => {
-  const h3 = document.createElement("h3");
-  h3.textContent = cat.categoria;
-  menuDiv.appendChild(h3);
-
-  cat.items.forEach(item => {
-    const row = document.createElement("div");
-    row.style.display = "flex";
-    row.style.justifyContent = "space-between";
-    row.style.borderBottom = "1px dashed #ccc";
-    row.innerHTML = `<span>${item.nombre}</span><span>${item.precio}</span>`;
-    menuDiv.appendChild(row);
+const menu=document.getElementById("menuSection");
+CONFIG.menu.forEach(cat=>{
+  const c=document.createElement("div");
+  c.className="menuCategory";
+  c.innerHTML=`<h3>${cat.categoria}</h3>`;
+  cat.items.forEach(i=>{
+    c.innerHTML+=`
+      <div class="menuRow">
+        <div>${i.nombre}${i.nota?`<div class="itemNote">${i.nota}</div>`:""}</div>
+        <div>${i.precio}</div>
+      </div>`;
   });
+  menu.appendChild(c);
 });
 
-console.log("Render OK");
+/* ACTIONS */
+whatsappBtn.href=`https://wa.me/${CONFIG.whatsapp}`;
+crmBtn.href=CONFIG.crmUrl||"#";
+if(!CONFIG.crmUrl) crmBtn.onclick=e=>e.preventDefault();
